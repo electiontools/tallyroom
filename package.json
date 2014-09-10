@@ -2,6 +2,9 @@
   "private": true,
   "version": "0.0.1",
   "license": "MIT",
+  "scripts": {
+    "test": "grunt test"
+  },
   "devDependencies": {
     "mocha": "~1.21.4",
     "grunt": "~0.4.5",

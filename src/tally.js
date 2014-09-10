@@ -1,7 +1,8 @@
 (function(done) {
   
-  var tallyFunc = function() {
-    
+  var tallyFunc = function(election) {
+    // TODO: return something other than the input!
+    return election;
   };
   
   // Export tally function

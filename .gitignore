@@ -1,3 +1,4 @@
-/.codio
+/coverage
+/node_modules/.codio
 /coverage
 /node_modules

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tally sandbox</title>
+  <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+  <script type="text/javascript" src="src/tally.js"></script>
+  <style>
+  #input { 
+    height: 400px;
+    width: 100%;
+  }
+  </style>
+</head>
+<body>
+  
+<div id="input">
+  
+</div>
+<script>
+  var editor = ace.edit("input");
+  editor.setTheme("ace/theme/monokai");
+  editor.getSession().setMode("ace/mode/json");
+  
+  var initial = {
+    candidates: ['a', 'b'],
+    votes: [
+      ['a'],
+      ['a'],
+      ['a'],
+      ['b'],
+      ['b']
+    ]
+  };
+  
+  editor.setValue(JSON.stringify(initial, null, "  "));
+  
+  function doTally() {
+    var input = JSON.parse(editor.getValue());
+    document.getElementById("output").innerHTML = JSON.stringify(tally(input));
+  }
+</script>
+
+<button onclick="doTally();">
+   Tally
+</button>
+  
+<h3>Output</h3>
+  
+<pre id="output">
+  
+</pre>
+</body>
+</html>

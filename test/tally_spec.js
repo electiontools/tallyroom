@@ -41,7 +41,7 @@ describe('#tally()', function() {
   
   describe('First Past The Post', function() {
     
-    it('should yield correct result in elections with invalid votes');
+    it('should yield correct result in elections with invalid ballots');
     
   });
   

@@ -1,7 +1,7 @@
 {
   "type": "FPTP",
   "candidates": ["a", "b"],
-  "votes": [
+  "ballots": [
     [],
     ["a"],
     ["a"],

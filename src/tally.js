@@ -10,8 +10,9 @@
   // Voting Methods
   var methods = {};
   
+  // First Past the Post method
   methods.FPTP = (function IIFE() {
-    // Remove invalid votes, and turn valid votes into single candidate
+    // Remove invalid ballots, and turn valid ballots into single candidate
   	var validator = function(candidates) {
       return function() {
         // TODO: return candidate, or null if invalid
@@ -19,9 +20,9 @@
       }
     };
     
-    var method = function(options, candidates, votes) {
-      // Compact and count votes
-      var tally = utils.count(votes.map( validator(candidates) ));
+    var method = function(options, candidates, ballots) {
+      // Compact and count ballots
+      var tally = utils.count(ballots.map( validator(candidates) ));
       // TODO: Declate highest non-null candidate from tally the winner
       return {};
     };
@@ -42,7 +43,7 @@
     return method(
       election.options || {},
       election.candidates || [],
-      election.votes || []);
+      election.ballots || []);
   };
   
   // Exports components for testing

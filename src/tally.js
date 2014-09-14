@@ -1,10 +1,15 @@
 (function(done) {
   
   var utils = {};
+  
+  // Returns count for each item
+  // ie. count(["a","b","b", null]) = { null: 1, "a": 1, "b": 2 }
   utils.count = function(items) {
-    // TODO: return count for each item
-    // ie. count(["a","b","b", null]) = { null: 1, "a": 1, "b": 2 }
-    return {};
+    var result = {}
+    items.forEach(function(element, index, array) {
+      result[element] = result.hasOwnProperty(element) ? result[element] + 1 : 1;
+    });
+    return result;
   }
   
   // Voting Methods

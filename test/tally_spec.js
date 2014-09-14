@@ -54,7 +54,7 @@ describe('#tally.utils', function() {
   	var count = utils.count;
     
     // TODO: Skipping - make this pass!
-    it.skip('should count instances of each item', function(done) {
+    it('should count instances of each item', function(done) {
       expect(count([])).to.deep.equal({});
       expect(count(['a'])).to.deep.equal({ "a": 1 });
       expect(count(['a', 'b', 'b'])).to.deep.equal({ "a": 1, "b": 2 });

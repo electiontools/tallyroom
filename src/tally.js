@@ -18,22 +18,25 @@
   // First Past the Post method
   methods.FPTP = (function IIFE() {
     // Remove invalid ballots, and turn valid ballots into single candidate
-  	var validator = function(candidates) {
-      return function() {
-        // TODO: return candidate, or null if invalid
-        return null;
+  	var ballotValidator = function(candidates) {
+      return function(ballot) {
+        // return the selected candidate, or null if invalid
+        if (ballot.length == 1 && candidates.indexOf(ballot[0]) != -1)
+          return ballot[0];
+        else
+          return null;
       }
     };
     
     var method = function(options, candidates, ballots) {
       // Compact and count ballots
-      var tally = utils.count(ballots.map( validator(candidates) ));
+      var tally = utils.count(ballots.map( ballotValidator(candidates) ));
       // TODO: Declate highest non-null candidate from tally the winner
       return {};
     };
     
     // Export for testing
-    method.validator = validator;
+    method.ballotValidator = ballotValidator;
     
     return method;
   })();

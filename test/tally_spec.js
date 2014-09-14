@@ -68,19 +68,30 @@ describe('#tally.utils', function() {
 describe('#tally.methods.fptp', function() {
   var FPTP = require('../src/tally').methods.FPTP;
   
-  describe('.validator', function() {
-    var validator = FPTP.validator;
+  describe('.ballotValidator', function() {
+    var validator = FPTP.ballotValidator;
     
     it('should yield a function from a list of candidates', function(done) {
       expect(validator(['a', 'b'])).to.be.a('function');
       done();
     });
     
-    it('should yield null if not a single candidate');
+    it('should yield null if ballot is not for a single candidate', function(done) {
+      expect(validator(['a', 'b'])([])).to.be.null;
+      expect(validator(['a', 'b'])(['a', 'b'])).to.be.null;
+      done();
+    });
     
-    it('should yield null if not a given candidate');
+    it('should yield null if ballot does not contain a listed candidate', function(done) {
+      expect( validator(['a','b'])(['c']) ).to.be.null;
+      done();
+    });
     
-    it('should yield candidate if valid vote');
+    it('should yield candidate if valid vote', function(done) {
+      expect( validator(['a','b'])(['a']) ).to.equal('a');
+      expect( validator(['a','b'])(['b']) ).to.equal('b');
+      done();
+    });
     
   });
   

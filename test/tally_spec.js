@@ -41,7 +41,16 @@ describe('#tally()', function() {
   
   describe('First Past The Post', function() {
     
-    it('should yield correct result in elections with invalid ballots');
+    it.skip('should yield correct result in elections with invalid ballots', function(done) {
+      fromFile('fptp/valid_01.json', function(input) {
+        // Put stuff here! :-)
+        // Have you decided on the property used to designate the winner(s)?
+        var result = tally(input);
+        expect(result.verdict).to.deep.equal(['a']); // Agreee ? 
+        // 'a' == 'a', but ['a'] != ['a']
+      });
+      done();
+    });
     
   });
   
@@ -53,11 +62,15 @@ describe('#tally.utils', function() {
   describe('.count', function() {
   	var count = utils.count;
     
-    // TODO: Skipping - make this pass!
     it('should count instances of each item', function(done) {
-      expect(count([])).to.deep.equal({});
-      expect(count(['a'])).to.deep.equal({ "a": 1 });
-      expect(count(['a', 'b', 'b'])).to.deep.equal({ "a": 1, "b": 2 });
+      expect(count([])).to.deep.equal([]);
+      expect(count(['a'])).to.deep.equal([{ candidate: "a", votes: 1}]);
+      expect(count(['a', 'b', 'b', null, 'c'])).to.deep.equal([
+        { candidate: "b", votes: 2 },
+        { candidate: "a", votes: 1 },
+        { candidate: "c", votes: 1 },
+        { candidate: null, votes: 1 }
+      ]);
       done();
     });
     

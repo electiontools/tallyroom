@@ -1,5 +1,12 @@
 language: node_js
 node_js:
-  - "0.10"
+- '0.10'
 before_install:
-  - "npm install -g grunt-cli"
+- npm install -g grunt-cli
+deploy:
+  provider: heroku
+  api_key:
+    secure: eIpW5IDYktTz2+KnpBYdaWSA7jxnkgIYGh3ZOCg2NnIiHasO51PFrXs5c+mRnrwhkuhJ35dQ1+OMY3JNOiP1wVVT2+XpCelL8MiWW03DtRZwvoB4zGanubY8HMqj8bLH5V/g+yYv/oZkS+LRetVMKTUixh2WYmx2N+0T18fY5YY=
+  app: tallyroom
+  on:
+    repo: electiontools/tallyroom

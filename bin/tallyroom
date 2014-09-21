@@ -1,0 +1,12 @@
+#!/usr/bin/env node
+
+var argv = require('optimist').argv,
+		server = require('../src/server'),
+		tally = require('../src/tally');
+
+if (argv.port) {
+	server(tally)({ port: argv.port });
+} else {
+	console.log("Please provide listening port with --port");
+  process.exit(1);
+}

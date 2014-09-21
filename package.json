@@ -15,5 +15,10 @@
     "travis-cov": "~0.2.5",
     "chai": "~1.9.1",
     "underscore": "~1.7.0"
+  },
+  "dependencies": {
+    "express": "~4.9.4",
+    "body-parser": "~1.8.3",
+    "optimist": "~0.6.1"
   }
 }

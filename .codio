@@ -1,10 +1,8 @@
 {
-// Configure your Run and Preview buttons here.
-  // Run button configuration
   "commands": {
-    "Run tests": "grunt test"
+    "Run tests": "grunt test",
+    "Install packages": "npm install && npm -g install grunt-cli"
   },
-  // Preview button configuration
   "preview": {
     "Sandbox": "http://{{domain}}/sandbox.html"
   }

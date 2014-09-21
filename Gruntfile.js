@@ -53,7 +53,6 @@ module.exports = function(grunt) {
         src: 'coverage/coverage.lcov'
       }
     }
-  }
   });
   
   grunt.registerTask('test', ['clean', 'blanket', 'copy', 'mochaTest']);

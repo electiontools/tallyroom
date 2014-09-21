@@ -51,8 +51,13 @@
       // Compact and count ballots
       var tally = utils.count(ballots.map( ballotValidator(candidates) ));
       // TODO: Declate highest non-null candidate from tally the winner
+      var highestVotes = tally[0].candidate == null ?  tally[1].votes : tally[0].votes;
+      var results = _.filter(tally, function(x){
+        return x.votes == highestVotes && x.candidate != null;
+      });
+      var winners = _.pluck(results, 'candidate');
       return {
-        verdict: [] // TODO: Fill this in
+        verdict:  winners
       };
     };
     

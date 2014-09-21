@@ -41,15 +41,28 @@ describe('#tally()', function() {
   
   describe('First Past The Post', function() {
     
-    it.skip('should yield correct result in elections with invalid ballots', function(done) {
+    it('should yield correct result in elections with invalid ballots', function(done) {
       fromFile('fptp/valid_01.json', function(input) {
-        // Put stuff here! :-)
-        // Have you decided on the property used to designate the winner(s)?
         var result = tally(input);
-        expect(result.verdict).to.deep.equal(['a']); // Agreee ? 
-        // 'a' == 'a', but ['a'] != ['a']
+        expect(result.verdict).to.deep.equal(['a']);
+        done();
       });
-      done();
+    });
+    
+    it('should not consider invalid ballots to be winners', function(done) {
+      fromFile('fptp/valid_02.json', function(input) {
+        var result = tally(input);
+        expect(result.verdict).to.deep.equal(['b']);
+        done();
+      });
+    });
+    
+    it('should return multiple candidates when there is a tie', function(done) {
+      fromFile('fptp/valid_03.json', function(input) {
+        var result = tally(input);
+        expect(result.verdict).to.deep.equal(['a', 'b']);
+        done();
+      });
     });
     
   });

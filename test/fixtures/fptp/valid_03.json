@@ -1,0 +1,10 @@
+{
+  "type": "FPTP",
+  "candidates": ["a", "b"],
+  "ballots": [
+    ["b"],
+    ["b"],
+    ["a"],
+    ["a"]
+  ]
+}

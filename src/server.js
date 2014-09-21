@@ -1,5 +1,6 @@
 var express = require('express'),
-    bodyParser = require('body-parser');
+    bodyParser = require('body-parser'),
+    Q = require('q');
 
 var server = function(tally) {
   
@@ -13,6 +14,7 @@ var server = function(tally) {
 
   app.post('/', function(req,res) {
     if (req.is('json')) {
+      // TODO: Handle exceptions
       var result = tally(req.body);
       res.format({
         // JSON
@@ -26,12 +28,17 @@ var server = function(tally) {
   });
   
   var runtime = function(options) {
-  	var port = options.port || 3000;
+    var options = options || {},
+  	    port = options.port || 0;
+    
+    var d = Q.defer();
     
     var server = app.listen(port, function() {
       console.log('Listening on port %d', server.address().port);
+      return d.resolve(server);
     });
     
+    return d.promise;
   };
   
   // Attach the app so it can be extended

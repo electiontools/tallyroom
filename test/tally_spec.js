@@ -49,10 +49,18 @@ describe('#tally()', function() {
       });
     });
     
-    it('should not consider invalid ballots to be winners', function(done) {
+    it('should not consider invalid ballots to be outright winners', function(done) {
       fromFile('fptp/valid_02.json', function(input) {
         var result = tally(input);
         expect(result.verdict).to.deep.equal(['b']);
+        done();
+      });
+    });
+    
+    it('should not consider invalid ballots to be winners in a tie', function(done) {
+      fromFile('fptp/valid_04.json', function(input) {
+        var result = tally(input);
+        expect(result.verdict).to.deep.equal(['a']);
         done();
       });
     });

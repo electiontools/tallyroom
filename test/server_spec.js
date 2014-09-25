@@ -33,10 +33,18 @@ describe('#server()', function() {
     var app = server(_.identity).app;
     request(app)
     	.post('/')
-    	.expect(400, done)
+      .send({})
+    	.expect(200, done);
   });
   
-  it('responds with bad request when an error is thrown', function(done) {
+  it('responds with 400 when POST does not contain JSON', function(done) {
+    var app = server(_.identity).app;
+    request(app)
+    	.post('/')
+    	.expect(400, done);
+  });
+  
+  it('responds with 400 when an error is thrown', function(done) {
     var app = server(function() { throw new Error("Test") }).app;
     request(app)
       .post('/')

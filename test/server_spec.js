@@ -29,7 +29,14 @@ describe('#server()', function() {
     
   });
   
-  it('requires JSON POSTs', function(done) {
+  it('provide a landing page for GET requests', function(done) {
+    var app = server(_.identity).app;
+    request(app)
+    	.get('/')
+    	.expect(200, done);
+  });
+  
+  it('respond to JSON POSTs', function(done) {
     var app = server(_.identity).app;
     request(app)
     	.post('/')

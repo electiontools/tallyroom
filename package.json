@@ -20,7 +20,7 @@
     "chai": "~1.9.1",
     "supertest": "~0.13.0",
     "mocha-lcov-reporter": "0.0.1",
-    "grunt-coveralls": "~1.0.0"
+    "coveralls": "~2.11.2"
   },
   "dependencies": {
     "underscore": "~1.7.0",

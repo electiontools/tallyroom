@@ -3,7 +3,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-blanket');
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-copy');
-  grunt.loadNpmTasks('grunt-coveralls');
   grunt.loadNpmTasks('grunt-mocha-test');
 
   // Project configuration.
@@ -46,11 +45,6 @@ module.exports = function(grunt) {
           captureFile: 'coverage/coverage.lcov'
         },
         src: ['coverage/test/**/*.js']
-      }
-    },
-    coveralls: {
-      options: {
-        src: 'coverage/coverage.lcov'
       }
     }
   });

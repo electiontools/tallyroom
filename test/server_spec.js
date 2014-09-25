@@ -33,7 +33,15 @@ describe('#server()', function() {
     var app = server(_.identity).app;
     request(app)
     	.post('/')
-    	.expect(405, done)
+    	.expect(400, done)
+  });
+  
+  it('responds with bad request when an error is thrown', function(done) {
+    var app = server(function() { throw new Error("Test") }).app;
+    request(app)
+      .post('/')
+      .send({})
+      .expect(400, done)
   });
   
 });

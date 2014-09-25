@@ -14,16 +14,19 @@ var server = function(tally) {
 
   app.post('/', function(req,res) {
     if (req.is('json')) {
-      // TODO: Handle exceptions
-      var result = tally(req.body);
-      res.format({
-        // JSON
-        'application/json': function() {
-          res.json(result);
-        }
-      })
+      try {
+        var result = tally(req.body);
+        res.format({
+          // JSON
+          'application/json': function() {
+            res.json(result);
+          }
+        });
+      } catch(e) {
+        res.status(400).send('Elections are provided using JSON.');
+      }
     } else {
-      res.status(405).send('Elections are provided using JSON.');
+      res.status(400).send('Elections are provided using JSON.');
     }
   });
   
